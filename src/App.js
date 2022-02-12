@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CardList } from './components/card-list/card-list.component';
+import { SearchBox } from './components/search-box/search-box.component';
 import './App.css';
 
 class App extends Component {
@@ -26,18 +27,15 @@ class App extends Component {
     );
     return (
       <div className="App">
-        <input
-          type="search"
+        <SearchBox
           placeholder="search monsters"
-          onChange={(e) => {
-            this.setState({ searchField: e.target.value }, () =>
-              console.log(this.state)
-            ); // setState is an asynchronous function call
-            // synchronous actions happen immediatey and js knows amount of time it would take.
-          }} // js would wait for synchronous action to finish before continuing
-          // asynchronous action takes indefinite amount of time that js does not know
-          // js runs rest of code and returns to asynchronous action when it has finished running
+          handleChange={(e) => this.setState({ searchField: e.target.value })}
         />
+        {/* - setState is an asynchronous function call
+            - synchronous actions happen immediatey and js knows amount of time it would take.
+            - js would wait for synchronous action to finish before continuing
+            - asynchronous action takes indefinite amount of time that js does not know
+            - js runs rest of code and returns to asynchronous action when it has finished running */}
         <CardList monsters={filteredMonsters} />
       </div>
     );
