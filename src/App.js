@@ -20,6 +20,10 @@ class App extends Component {
   }
 
   render() {
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchField.toLowerCase())
+    );
     return (
       <div className="App">
         <input
@@ -34,7 +38,7 @@ class App extends Component {
           // asynchronous action takes indefinite amount of time that js does not know
           // js runs rest of code and returns to asynchronous action when it has finished running
         />
-        <CardList monsters={this.state.monsters} />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
